@@ -1,9 +1,6 @@
 name: "Sample Workflow"
 on:
-    push:
-        branches:
-            - master
-            - main
+    push
 
 jobs:
     
