@@ -1,0 +1,23 @@
+name: "Sample Workflow"
+on:
+    push:
+        branches:
+            - master
+            - main
+
+jobs:
+    
+    check-branch:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Verify PR branch name
+              run: |
+                branch_name=$(git branch --show-current)
+                if [[ ! $branch_name =~ ^DOPS-[0-9]+ ]]; then
+                    echo "Error: Branch name does not start with 'DOPS-' followed by numbers."
+                    exit 1
+                fi
+
